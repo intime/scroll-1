@@ -6,7 +6,7 @@ Custom adaptive scrolling
 ## Supported in browsers and devices:
 
 - iPhone and iPad
-- Firefox 3.6
+- Firefox 3.6+
 - Opera 10+
 - Chrome and Safari
 - Internet Explorer 7+
@@ -37,23 +37,24 @@ Simply start! [base example](http://csscode.ru/test/scroll/)
         horizontal:true // default - false
     });
 
-####Html inner drag-tag [example](http://csscode.ru/test/scroll#drag-old):
+####Сode within the slider [example](http://csscode.ru/test/scroll#drag-old):
 
     new Scroll({
         drag_old: '<div class="drag-top"></div><div class="drag-body"></div><div class="drag-bottom"></div>' // default - false
     });
 
-####Custom class name for node:
+####Custom classes for the node:
 
-    new Scroll( '.scroll-myclass-name' ,{ // name main wrapper
+    new Scroll('.scroll-myclass-name', { // name main wrapper
         cls: ['scroll-wrap', 'scroll-pane', 'scroll-track', 'scroll-drag'] // strict sequence
     });
 
-####Run all scrolling right off and set step (speed):
+####Run all scrolling right off, set step (speed) and support Apple device support:
 
     new Scroll({
         start: true, // default - false
-        step : 5 // step (speed), default - 5
+        step : 5, // step (speed), default - 5
+        iDeviceSupport: false // off support Apple device, default - true
     });
 
 ## Events
@@ -67,10 +68,10 @@ Simply start! [base example](http://csscode.ru/test/scroll/)
         console.dir(data);
 
         // data.config.cls      - array current clasess
-        // data.config.drag_old - if is html inner drag-tag then this html else false
+        // data.config.drag_old - if is html inner slider then this html else false
         // data.config.horizontal - if is horizontal then true
-        // data.config.start - default false, is start?
-        // data.config.step - step
+        // start: false - start?
+        // step: 5 - step
 
         // data.node == div.scroll
         // data.tracking.scrollHeight - height scrolling box
@@ -103,10 +104,20 @@ Simply start! [base example](http://csscode.ru/test/scroll/)
 
     $('#set-pos').click(function(e){
         var event = jQuery.Event("scrolling.set"); // create event
-        event.scrollY = 100; // custom position by Y
-        event.scrollX = 100; // custom position by X if horizontal scrolling
+        event.scrollY = 100; // custom position by Y, optional '+number' or '-number', example '+54'
+        event.scrollX = 100; // custom position by X if horizontal scrolling, optional '+number' or '-number', example '-76'
         event.duration = duration; // duration animate
         event.easing   = 'linear'; // default 'swing'
         $(".scroll").trigger(event); // call start
         return false; // stop default event
+    });
+
+*Button Up or Down [example](http://csscode.ru/test/scroll#up-and-down-button):*
+
+    $('.scroll-up').click(function(e){
+        var event = jQuery.Event("scrolling.set");
+        event.scrollY = '-20';
+        event.duration = 300;
+        $(".scroll").trigger(event);
+        return true;
     });
