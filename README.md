@@ -70,15 +70,15 @@ Simply start! [base example](http://csscode.ru/test/scroll/)
         // data.config.cls      - array current clasess
         // data.config.drag_old - if is html inner slider then this html else false
         // data.config.horizontal - if is horizontal then true
-        // start: false - start?
-        // step: 5 - step
+        // data.config.start: false - start?
+        // data.config.step: 5 - step
 
         // data.node == div.scroll
         // data.tracking.scrollHeight - height scrolling box
-        // paneHeight - height wrap contents
-        // dragHeight - height slider
-        // dragTop - The distance from slider top border to the top dead dott wrapper
-        // dragBot - The distance from slider bottom border to the bottom dead dott wrapper
+        // data.trackingpaneHeight - height wrap contents
+        // data.trackingdragHeight - height slider
+        // data.trackingdragTop - The distance from slider top border to the top dead dott wrapper
+        // data.trackingdragBot - The distance from slider bottom border to the bottom dead dott wrapper
     });
 
 ####The event name
