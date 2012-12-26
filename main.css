@@ -243,7 +243,7 @@ Simply start! [base example](http://csscode.ru/test/scroll/)
         return false; // stop default event
     });
 
-*Button Up or Down:*
+*Button Up or Down [example](http://csscode.ru/test/scroll#up-and-down-button):*
 
     $('.scroll-up').click(function(e){
         var event = jQuery.Event("scrolling.set");

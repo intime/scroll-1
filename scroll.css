@@ -5,7 +5,8 @@
     zoom:1;
 }
 .scroll-wrap, .scroll, .scroll-horizontal{ width:100%; height:100%; }
-.scroll-pane{ padding-right:7px }
+.scroll-pane{ padding-right:7px; }
+.scroll-horizontal .scroll-pane{ padding-right:0; padding-bottom:7px; }
 .scroll-track{
     position:absolute;
     top:0; bottom:0;
@@ -38,6 +39,8 @@
     width:auto;
 }
 .scroll.hover > .scroll-track,
+.scroll.mousedown > .scroll-track,
+.scroll-horizontal.mousedown > .scroll-track,
 .scroll-horizontal.hover > .scroll-track{ opacity:.7; filter:alpha(opacity = 70); }
 .touch.hover > .scroll-track{ opacity:1; filter:alpha(opacity = 100); }
 .user-select-none, .user-select-none *{
