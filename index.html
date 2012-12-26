@@ -35,7 +35,7 @@
                 return true;
             }
             $('body').on({
-                'scrolling.load':function(e, data){
+                'scrolling.init':function(e, data){
                     tracking(e, data)
                 },
                 'scrolling.mouseenter': function (e, data) {
@@ -76,7 +76,7 @@
                 'scrolling.mouseup': function (e, data) {
                     tracking(e, data)
                 },
-                'scrolling.loaded': function (e, data) {
+                'scrolling.inited': function (e, data) {
                     tracking(e, data)
                 }
             }, '.scroll, .scroll-old, .scroll-step, .scroll-horizontal, .scroll-button'); //tracking(e, data);
