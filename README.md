@@ -82,9 +82,9 @@ Simply start! [base example](http://csscode.ru/test/scroll/)
     });
 
 ####The event name
-- **scrolling.load**       - start init scripts
+- **scrolling.init**       - start init scripts
 - **scrolling.create**     - create node
-- **scrolling.loaded**     - script loaded
+- **scrolling.inited**     - script loaded
 
 - **scrolling.mouseenter** - The event mouse enter for class name .scroll node
 - **scrolling.mouseleave** - The event mouse leave
