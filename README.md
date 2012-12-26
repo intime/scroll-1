@@ -69,8 +69,8 @@ Simply start! [base example](http://csscode.ru/test/scroll/)
         // data.config.cls      - array current clasess
         // data.config.drag_old - if is html inner drag-tag then this html else false
         // data.config.horizontal - if is horizontal then true
-        // start: false - start?
-        // step: 5 - step
+        // data.config.start - default false, is start?
+        // data.config.step - step
 
         // data.node == div.scroll
         // data.tracking.scrollHeight - height scrolling box
