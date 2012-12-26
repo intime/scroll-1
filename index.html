@@ -1,0 +1,364 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Custom adaptive scrolling</title>
+
+    <link rel="stylesheet" type="text/css" href="scroll.css" media="all">
+    <link rel="stylesheet" type="text/css" href="main.css" media="all">
+
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="jquery.scroll.js"></script>
+
+    <script type="text/javascript">
+        $(function(e){
+
+            function tracking(e, data){
+                document.getElementById('event').innerHTML = e.type + '.'+ e.namespace
+                if(data){
+                    document.getElementById('cls').innerHTML = data.config.cls
+                    document.getElementById('drag_old').innerHTML = data.config.drag_old
+                    document.getElementById('horizontal-track').innerHTML = data.config.horizontal
+                    document.getElementById('start').innerHTML = data.config.start
+                    document.getElementById('step').innerHTML = data.config.step
+
+                    document.getElementById('selector').innerHTML = e.currentTarget.className
+
+                    document.getElementById('scrollHeight').innerHTML = data.tracking.scrollHeight == undefined ? data.tracking.scrollWidth : data.tracking.scrollHeight
+                    document.getElementById('paneHeight').innerHTML = data.tracking.paneHeight == undefined ? data.tracking.paneWidth : data.tracking.paneHeight
+                    document.getElementById('dragHeight').innerHTML = data.tracking.dragHeight == undefined ? data.tracking.dragWidth : data.tracking.dragHeight
+                    document.getElementById('dragTop').innerHTML = data.tracking.dragTop == undefined ? data.tracking.dragLeft : data.tracking.dragTop
+                    document.getElementById('dragBot').innerHTML = data.tracking.dragBot == undefined ? data.tracking.dragRight : data.tracking.dragBot
+                }
+
+                return true;
+            }
+            $('body').on({
+                'scrolling.load':function(e, data){
+                    tracking(e, data)
+                },
+                'scrolling.mouseenter': function (e, data) {
+                    tracking(e, data)
+                },
+                'scrolling.mouseleave': function (e, data) {
+                    tracking(e, data)
+                },
+                'scrolling.left': function (e, data) {
+                    tracking(e, data)
+                },
+                'scrolling.right': function (e, data) {
+                    tracking(e, data)
+                },
+                'scrolling.top': function (e, data) {
+                    tracking(e, data)
+                    $('.top.red').stop(false, true).fadeIn().delay(500).fadeOut()
+                },
+                'scrolling.bottom': function (e, data) {
+                    tracking(e, data)
+                    $('.bottom.red').stop(false, true).fadeIn().delay(500).fadeOut()
+                },
+                'scrolling.mouseover': function (e, data) {
+                    tracking(e, data)
+                },
+                'scrolling.scroll': function (e, data) {
+                    tracking(e, data)
+                },
+                'scrolling.create': function (e, data) {
+                    tracking(e, data)
+                },
+                'scrolling.mousemove': function (e, data) {
+                    tracking(e, data)
+                },
+                'scrolling.mousedown': function (e, data) {
+                    tracking(e, data)
+                },
+                'scrolling.mouseup': function (e, data) {
+                    tracking(e, data)
+                },
+                'scrolling.loaded': function (e, data) {
+                    tracking(e, data)
+                }
+            }, '.scroll, .scroll-old, .scroll-step, .scroll-horizontal'); //tracking(e, data);
+
+            new Scroll();
+
+            new Scroll({
+                horizontal:true
+            });
+            new Scroll('.scroll-old', {
+                drag_old: '<div class="drag-top"></div><div class="drag-body"></div><div class="drag-bottom"></div>'
+            });
+            new Scroll('.scroll-step', {
+                start: true, // default - false
+                step : 10 // step (speed)
+            });
+
+            $('#set-pos').click(function(e){
+                var pos = document.getElementById('pos').value,
+                    duration = document.getElementById('duration').value;
+
+                var event = jQuery.Event("scrolling.set");
+                event.scrollY  = pos;
+                event.scrollX  = pos;
+                event.duration = duration;
+                $(".scroll").trigger(event);
+                return false;
+            });
+            $('#get-content-and-push').click(function(e){
+                $.ajax({
+                    url:'content.html',
+                    success:function(res){
+                        $('.scroll .scroll-pane').prepend(res);
+                        return true;
+                    }
+                });
+                return false;
+            })
+            return true;
+        });
+    </script>
+</head>
+<body>
+
+<div id="wrapper">
+    <h1>Custom adaptive scrolling</h1>
+
+    <h4>Base example:</h4>
+    <code>
+new Scroll();
+    </code>
+    <div id="box1" class="box">
+
+        <div class="content scroll">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum sodales tellus eget rutrum.
+                Phasellus
+                tristique pretium mauris, quis aliquet nunc aliquet ut. Duis in posuere mauris. Maecenas consectetur
+                porta
+                hendrerit. Aenean cursus nunc quis justo venenatis at dignissim nulla molestie. Sed quis massa id metus
+                placerat
+                dignissim. Donec tortor ante, vestibulum at tempus porta, congue tincidunt lectus.</p>
+
+            <p>Duis consequat dictum lectus, ac volutpat enim pharetra sit amet. Suspendisse magna sapien, laoreet non
+                ullamcorper
+                quis, commodo a magna. Proin quis gravida magna. Proin felis erat, scelerisque in tincidunt et,
+                convallis a
+                felis.
+                Nullam at diam tortor. Sed pulvinar ante in sapien viverra consequat. Nulla a aliquet felis. Donec et
+                varius
+                mauris.
+                Aliquam varius est quis felis tincidunt sagittis.</p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum sodales tellus eget rutrum.
+                Phasellus
+                tristique pretium mauris, quis aliquet nunc aliquet ut. Duis in posuere mauris. Maecenas consectetur
+                porta
+                hendrerit. Aenean cursus nunc quis justo venenatis at dignissim nulla molestie. Sed quis massa id metus
+                placerat
+                dignissim. Donec tortor ante, vestibulum at tempus porta, congue tincidunt lectus.</p>
+
+            <p>Duis consequat dictum lectus, ac volutpat enim pharetra sit amet. Suspendisse magna sapien, laoreet non
+                ullamcorper
+                quis, commodo a magna. Proin quis gravida magna. Proin felis erat, scelerisque in tincidunt et,
+                convallis a
+                felis.
+                Nullam at diam tortor. Sed pulvinar ante in sapien viverra consequat. Nulla a aliquet felis. Donec et
+                varius
+                mauris.
+                Aliquam varius est quis felis tincidunt sagittis.</p>
+        </div>
+    </div>
+    <h4>Set position:</h4>
+    <code>
+        $('#set-pos').click(function(e){ <br>
+        var pos = document.getElementById('pos').value, <br>
+        duration = document.getElementById('duration').value; <br>
+        <br>
+        var event = jQuery.Event("scrolling.set"); <br>
+        event.scrollY = pos; <br>
+        event.scrollX = pos; <br>
+        event.duration = duration; <br>
+        $(".scroll").trigger(event); <br>
+        return false; <br>
+        });
+    </code>
+    duration: <input id="duration" type="text" value="500"/>
+    position: <input id="pos" type="text" value="100"/>
+
+    <input id="set-pos" type="button" value="set position"/>
+
+    <input id="get-content-and-push" type="button" value="content get and push"/>
+    <br><br>
+    <h2 id="horizontal">Horizontal Scroll</h2>
+    <code>
+        new Scroll({
+        horizontal:true
+        });
+    </code>
+    <div class="box">
+        <div class="content scroll-horizontal">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum sodales tellus eget rutrum.
+                Phasellus
+                tristique pretium mauris, quis aliquet nunc aliquet ut. Duis in posuere mauris. Maecenas consectetur
+                porta
+                hendrerit. Aenean cursus nunc quis justo venenatis at dignissim nulla molestie. Sed quis massa id metus
+                placerat
+                dignissim. Donec tortor ante, vestibulum at tempus porta, congue tincidunt lectus.</p>
+
+            <p>Duis consequat dictum lectus, ac volutpat enim pharetra sit amet. Suspendisse magna sapien, laoreet non
+                ullamcorper
+                quis, commodo a magna. Proin quis gravida magna. Proin felis erat, scelerisque in tincidunt et,
+                convallis a
+                felis.
+                Nullam at diam tortor. Sed pulvinar ante in sapien viverra consequat. Nulla a aliquet felis. Donec et
+                varius
+                mauris.
+                Aliquam varius est quis felis tincidunt sagittis.</p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum sodales tellus eget rutrum.
+                Phasellus
+                tristique pretium mauris, quis aliquet nunc aliquet ut. Duis in posuere mauris. Maecenas consectetur
+                porta
+                hendrerit. Aenean cursus nunc quis justo venenatis at dignissim nulla molestie. Sed quis massa id metus
+                placerat
+                dignissim. Donec tortor ante, vestibulum at tempus porta, congue tincidunt lectus.</p>
+
+            <p>Duis consequat dictum lectus, ac volutpat enim pharetra sit amet. Suspendisse magna sapien, laoreet non
+                ullamcorper
+                quis, commodo a magna. Proin quis gravida magna. Proin felis erat, scelerisque in tincidunt et,
+                convallis a
+                felis.
+                Nullam at diam tortor. Sed pulvinar ante in sapien viverra consequat. Nulla a aliquet felis. Donec et
+                varius
+                mauris.
+                Aliquam varius est quis felis tincidunt sagittis.</p>
+        </div>
+
+    </div>
+
+    <h2 id="drag-old">Code HTML inner Drag-tag</h2>
+    <code>
+        new Scroll({
+        <br>    drag_old: '&lt;div class="drag-top"&gt;&lt;/div&gt;&lt;div class="drag-body">&lt;/div&gt;&lt;div class="drag-bottom">&lt;/div&gt;'
+        <br>
+        });
+    </code>
+    <div class="box">
+        <div class="content scroll-old">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum sodales tellus eget rutrum.
+                Phasellus
+                tristique pretium mauris, quis aliquet nunc aliquet ut. Duis in posuere mauris. Maecenas consectetur
+                porta
+                hendrerit. Aenean cursus nunc quis justo venenatis at dignissim nulla molestie. Sed quis massa id metus
+                placerat
+                dignissim. Donec tortor ante, vestibulum at tempus porta, congue tincidunt lectus.</p>
+
+            <p>Duis consequat dictum lectus, ac volutpat enim pharetra sit amet. Suspendisse magna sapien, laoreet non
+                ullamcorper
+                quis, commodo a magna. Proin quis gravida magna. Proin felis erat, scelerisque in tincidunt et,
+                convallis a
+                felis.
+                Nullam at diam tortor. Sed pulvinar ante in sapien viverra consequat. Nulla a aliquet felis. Donec et
+                varius
+                mauris.
+                Aliquam varius est quis felis tincidunt sagittis.</p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum sodales tellus eget rutrum.
+                Phasellus
+                tristique pretium mauris, quis aliquet nunc aliquet ut. Duis in posuere mauris. Maecenas consectetur
+                porta
+                hendrerit. Aenean cursus nunc quis justo venenatis at dignissim nulla molestie. Sed quis massa id metus
+                placerat
+                dignissim. Donec tortor ante, vestibulum at tempus porta, congue tincidunt lectus.</p>
+
+            <p>Duis consequat dictum lectus, ac volutpat enim pharetra sit amet. Suspendisse magna sapien, laoreet non
+                ullamcorper
+                quis, commodo a magna. Proin quis gravida magna. Proin felis erat, scelerisque in tincidunt et,
+                convallis a
+                felis.
+                Nullam at diam tortor. Sed pulvinar ante in sapien viverra consequat. Nulla a aliquet felis. Donec et
+                varius
+                mauris.
+                Aliquam varius est quis felis tincidunt sagittis.</p>
+        </div>
+
+    </div>
+
+    <h2 id="fast-start">Fast start and step scrolling</h2>
+    <code>
+        new Scroll({<br>
+            start: true, // default - false, run all scroll after DOM load<br>
+            step : 10 // step (speed)<br>
+        });
+    </code>
+
+    <div class="box">
+        <div class="content scroll-step">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum sodales tellus eget rutrum.
+                Phasellus
+                tristique pretium mauris, quis aliquet nunc aliquet ut. Duis in posuere mauris. Maecenas consectetur
+                porta
+                hendrerit. Aenean cursus nunc quis justo venenatis at dignissim nulla molestie. Sed quis massa id metus
+                placerat
+                dignissim. Donec tortor ante, vestibulum at tempus porta, congue tincidunt lectus.</p>
+
+            <p>Duis consequat dictum lectus, ac volutpat enim pharetra sit amet. Suspendisse magna sapien, laoreet non
+                ullamcorper
+                quis, commodo a magna. Proin quis gravida magna. Proin felis erat, scelerisque in tincidunt et,
+                convallis a
+                felis.
+                Nullam at diam tortor. Sed pulvinar ante in sapien viverra consequat. Nulla a aliquet felis. Donec et
+                varius
+                mauris.
+                Aliquam varius est quis felis tincidunt sagittis.</p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum sodales tellus eget rutrum.
+                Phasellus
+                tristique pretium mauris, quis aliquet nunc aliquet ut. Duis in posuere mauris. Maecenas consectetur
+                porta
+                hendrerit. Aenean cursus nunc quis justo venenatis at dignissim nulla molestie. Sed quis massa id metus
+                placerat
+                dignissim. Donec tortor ante, vestibulum at tempus porta, congue tincidunt lectus.</p>
+
+            <p>Duis consequat dictum lectus, ac volutpat enim pharetra sit amet. Suspendisse magna sapien, laoreet non
+                ullamcorper
+                quis, commodo a magna. Proin quis gravida magna. Proin felis erat, scelerisque in tincidunt et,
+                convallis a
+                felis.
+                Nullam at diam tortor. Sed pulvinar ante in sapien viverra consequat. Nulla a aliquet felis. Donec et
+                varius
+                mauris.
+                Aliquam varius est quis felis tincidunt sagittis.</p>
+        </div>
+
+    </div>
+</div>
+<div class="traking">
+    <ul>
+        <li>Event: <b id="event"></b></li>
+        <li>Config:
+            <ul>
+                <li>cls: <b id="cls"></b></li>
+                <li>drag_old: <b id="drag_old"></b></li>
+                <li>horizontal: <b id="horizontal-track"></b></li>
+                <li>start: <b id="start"></b></li>
+                <li>step: <b id="step"></b></li>
+            </ul>
+        </li>
+        <li>Event obj node: <b id="selector"></b></li>
+        <li>tracking:
+            <ul>
+                <li>scrollHeight: <b id="scrollHeight"></b></li>
+                <li>paneHeight: <b id="paneHeight"></b></li>
+                <li>dragHeight: <b id="dragHeight"></b></li>
+                <li>dragTop: <b id="dragTop"></b></li>
+                <li>dragBot: <b id="dragBot"></b></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="red top">scroll up!</div>
+    <div class="red bottom">scroll down!</div>
+</div>
+</body>
+</html>
