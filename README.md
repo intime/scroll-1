@@ -5,7 +5,7 @@ Custom adaptive scrolling
 
 ## Supported in browsers and devices:
 
-- iPhone and iPad
+- iPhone/iPod and iPad
 - Firefox 3.6+
 - Opera 10+
 - Chrome and Safari
@@ -13,7 +13,7 @@ Custom adaptive scrolling
 
 ## Installation
 
-Include tag link for styles:
+Include tag <link> for styles:
 
     <link rel="stylesheet" type="text/css" href="/path/to/scroll.css" media="all" />
 
@@ -37,7 +37,7 @@ Simply start! [base example](http://csscode.ru/test/scroll/)
         horizontal:true // default - false
     });
 
-####Сode within the slider [example](http://csscode.ru/test/scroll#drag-old):
+####Your html code in the slider [example](http://csscode.ru/test/scroll#drag-old):
 
     new Scroll({
         drag_old: '<div class="drag-top"></div><div class="drag-body"></div><div class="drag-bottom"></div>' // default - false
@@ -49,7 +49,7 @@ Simply start! [base example](http://csscode.ru/test/scroll/)
         cls: ['scroll-wrap', 'scroll-pane', 'scroll-track', 'scroll-drag'] // strict sequence
     });
 
-####Run all scrolling right off, set step (speed) and support Apple device support:
+####Run all scrolling right off, set step (speed) and support Apple device:
 
     new Scroll({
         start: true, // default - false
@@ -69,16 +69,16 @@ Simply start! [base example](http://csscode.ru/test/scroll/)
 
         // data.config.cls      - array current clasess
         // data.config.drag_old - if is html inner slider then this html else false
-        // data.config.horizontal - if is horizontal then true
-        // data.config.start: false - start?
+        // data.config.horizontal - if is horizontal then true default false
+        // data.config.start: false - is start?
         // data.config.step: 5 - step
 
         // data.node == div.scroll
         // data.tracking.scrollHeight - height scrolling box
-        // data.trackingpaneHeight - height wrap contents
-        // data.trackingdragHeight - height slider
-        // data.trackingdragTop - The distance from slider top border to the top dead dott wrapper
-        // data.trackingdragBot - The distance from slider bottom border to the bottom dead dott wrapper
+        // data.tracking.paneHeight - height wrap contents
+        // data.tracking.dragHeight - height slider
+        // data.tracking.dragTop - The distance from slider top border to the top dead point wrapper
+        // data.tracking.dragBot - The distance from slider bottom border to the bottom dead point wrapper
     });
 
 ####The event name
@@ -94,10 +94,10 @@ Simply start! [base example](http://csscode.ru/test/scroll/)
 - **scrolling.mousemove**  - The event mouse move
 - **scrolling.mouseup**    - The event mouse up
 
-- **scrolling.left**       - The event occurs when the slider to the left dead dott
-- **scrolling.right**      - The event occurs when the slider to the right dead dott
-- **scrolling.top**        - The event occurs when the slider to the top dead dott
-- **scrolling.bottom**     - The event occurs when the slider to the bottom dead dott
+- **scrolling.left**       - The event occurs when the slider to the left dead point
+- **scrolling.right**      - The event occurs when the slider to the right dead point
+- **scrolling.top**        - The event occurs when the slider to the top dead point
+- **scrolling.bottom**     - The event occurs when the slider to the bottom dead point
 - **scrolling.scroll**     - The event scrolling
 
 ## Set position:
