@@ -5,7 +5,7 @@ Custom adaptive scrolling
 
 ## Supported in browsers and devices:
 
-- iPhone/iPod and iPad
+- iPhone/iPod/iPad and Android
 - Firefox 3.6+
 - Opera 10+
 - Chrome and Safari
