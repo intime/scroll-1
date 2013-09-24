@@ -126,6 +126,12 @@ code{
     width:10px; height:10px;
     background:url("down.png") no-repeat center;
 }
+.scroll-old .scroll-wrap, .scroll-step .scroll-wrap{
+	overflow-x:hidden;
+	overflow-y:auto;
+	padding-right:24px;
+	width:100%;
+}
 
 /*
 

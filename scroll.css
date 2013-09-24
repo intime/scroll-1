@@ -6,16 +6,19 @@
     min-height:100%;
     zoom:1;
 }
-.scroll{
+.scroll .scroll-wrap{
 	overflow-x:hidden;
 	overflow-y:auto;
+	padding-right:24px;
+	width:100%;
 }
-.scroll-horizontal{
+.scroll-horizontal .scroll-wrap{
 	overflow-x:auto;
 	overflow-y:hidden;
+	padding-bottom:24px;
+	width:100%;
 }
 .scroll-wrap, .scroll, .scroll-horizontal{ width:100%; height:100%; }
-.scroll-pane{ padding-right:7px; }
 .scroll-horizontal .scroll-pane{ padding-right:0; padding-bottom:7px; }
 .scroll-track{
     position:absolute;
