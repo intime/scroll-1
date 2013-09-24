@@ -1,9 +1,18 @@
 /* ----------- plugin::scroll ----------- */
+
 .scroll, .scroll-horizontal, .scroll-pane, .scroll-wrap{
     position:relative;
     overflow:hidden;
     min-height:100%;
     zoom:1;
+}
+.scroll{
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+.scroll-horizontal{
+	overflow-x:auto;
+	overflow-y:hidden;
 }
 .scroll-wrap, .scroll, .scroll-horizontal{ width:100%; height:100%; }
 .scroll-pane{ padding-right:7px; }
